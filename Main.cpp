@@ -53,6 +53,9 @@ int main(int argc, char** argv)
   Point2D endPoint;
   parseArgs(argv, osmFile, startPoint, endPoint);
 
+  std::cout << "start point: " << startPoint << std::endl;
+  std::cout << "end point: " << endPoint << std::endl;
+
 
   // Build node map
   std::unordered_map<long long, Point2D> nodeMap;

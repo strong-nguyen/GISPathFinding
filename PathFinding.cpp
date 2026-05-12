@@ -40,6 +40,12 @@ std::vector<long long> AStar::findPath(long long start, long long goal)
       return reconstructPath(cameFrom, current);
     }
 
+    // Fix crash if a node is a road end
+    if (!_graph->contains(current))
+    {
+      continue;
+    }
+
     // Explorer neighbor
     for (const auto& edge : _graph->at(current))
     {

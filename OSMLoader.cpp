@@ -35,16 +35,31 @@ void OSMLoader::buildAdjacencyList(std::unordered_map<long long, std::vector<Edg
       way_nodes.push_back(nd.attribute("ref").as_llong());
     }
 
+    // Handle case oneway road / oneway-reverse road
     bool isOneWay = false;
+    bool isReverse = false;
     for (pugi::xml_node tag : way.children("tag"))
     {
       std::string key = tag.attribute("k").as_string();
       std::string val = tag.attribute("v").as_string();
-      if (key == "oneway" && val == "yes")
+      if (key == "oneway")
       {
-        isOneWay = true;
+        if (val == "yes")
+        {
+          isOneWay = true;
+        }
+        else if (val == "-1")
+        {
+          isReverse = true;
+          isOneWay = true;
+        }
         break;
       }
+    }
+
+    if (isReverse)
+    {
+      std::reverse(way_nodes.begin(), way_nodes.end());
     }
 
     // Create edge between consecutive nodes
