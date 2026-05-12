@@ -35,6 +35,18 @@ void OSMLoader::buildAdjacencyList(std::unordered_map<long long, std::vector<Edg
       way_nodes.push_back(nd.attribute("ref").as_llong());
     }
 
+    bool isOneWay = false;
+    for (pugi::xml_node tag : way.children("tag"))
+    {
+      std::string key = tag.attribute("k").as_string();
+      std::string val = tag.attribute("v").as_string();
+      if (key == "oneway" && val == "yes")
+      {
+        isOneWay = true;
+        break;
+      }
+    }
+
     // Create edge between consecutive nodes
     for (std::size_t i = 0; i < way_nodes.size() - 1; ++i)
     {
@@ -48,7 +60,10 @@ void OSMLoader::buildAdjacencyList(std::unordered_map<long long, std::vector<Edg
       graph[u].push_back({ v, dist });
 
       // Add edge v -> u (two-way street)
-      graph[v].push_back({ u, dist });
+      if (!isOneWay)
+      {
+        graph[v].push_back({ u, dist });
+      }
     }
   }
 }

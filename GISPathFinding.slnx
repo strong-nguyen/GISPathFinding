@@ -3,5 +3,5 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
-  <Project Path="GISPathFinding.vcxproj" />
+  <Project Path="GISPathFinding.vcxproj" Id="d6f33b7c-5331-4f02-b53b-843e8a1a7f65" />
 </Solution>

@@ -127,15 +127,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BoostRTree.cpp" />
     <ClCompile Include="GeoJSONWriter.cpp" />
+    <ClCompile Include="Helper.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="OSMLoader.cpp" />
     <ClCompile Include="PathFinding.cpp" />
     <ClCompile Include="SpatialTool.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BoostDefine.h" />
+    <ClInclude Include="BoostRTree.h" />
     <ClInclude Include="CoreFeature.h" />
     <ClInclude Include="GeoJSONWriter.h" />
+    <ClInclude Include="Helper.h" />
     <ClInclude Include="OSMLoader.h" />
     <ClInclude Include="PathFinding.h" />
     <ClInclude Include="SpatialTool.h" />

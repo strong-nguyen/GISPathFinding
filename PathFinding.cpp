@@ -32,6 +32,11 @@ std::vector<long long> AStar::findPath(long long start, long long goal)
 
     // Check if we reached the goal
     if (current == goal) {
+      if (gScore.contains(goal))  // Store the shortest distance
+      {
+        _shortestDistance = gScore[goal];
+      }
+
       return reconstructPath(cameFrom, current);
     }
 
@@ -49,6 +54,11 @@ std::vector<long long> AStar::findPath(long long start, long long goal)
   }
 
   return {}; // No path found
+}
+
+double AStar::getShortestDistance() const
+{
+  return _shortestDistance;
 }
 
 std::vector<long long> AStar::reconstructPath(std::unordered_map<long long, long long>& cameFrom, long long current)

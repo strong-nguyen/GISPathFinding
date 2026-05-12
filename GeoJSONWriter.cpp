@@ -37,6 +37,22 @@ void GeoJSONWriter::addLineStringFeature(const std::vector<Point2D>& points)
   feature["geometry"] = geometry;
   feature["properties"] = nlohmann::json::object();
 
+  _root["features"].push_back(feature);
+}
+
+void GeoJSONWriter::addPointFeature(const Point2D& point, const std::map<std::string, std::string>& properties /* = {}*/)
+{
+  nlohmann::json feature;
+  feature["type"] = "Feature";
+
+  nlohmann::json geometry;
+  geometry["type"] = "Point";
+  geometry["coordinates"] = nlohmann::json::array();
+  geometry["coordinates"].push_back(point.lon);
+  geometry["coordinates"].push_back(point.lat);
+
+  feature["geometry"] = geometry;
+  feature["properties"] = properties;
 
   _root["features"].push_back(feature);
 }

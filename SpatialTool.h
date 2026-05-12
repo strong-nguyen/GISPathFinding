@@ -1,12 +1,7 @@
 #pragma once
 
 #include "CoreFeature.h"
-
-#include <boost/geometry.hpp>
-#include <boost/geometry/geometries/point.hpp>
-
-namespace bg = boost::geometry;
-typedef bg::model::point<double, 2, bg::cs::geographic<bg::degree>> boost_point;
+#include "BoostDefine.h"
 
 namespace gis
 {
